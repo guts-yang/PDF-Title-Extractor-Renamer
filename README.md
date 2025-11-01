@@ -1,17 +1,20 @@
-# PDF标题提取与重命名工具
+# PDF论文处理与机构信息分析工具
 
-这是一个功能完善的PDF文件批量处理自动化程序，可以递归遍历指定目录下的所有PDF文件，智能提取标题信息并将文件重命名为其标题文本。
-<img width="866" height="594" alt="image" src="https://github.com/user-attachments/assets/cc04bdac-dda9-495a-ae14-9ed9308a49a9" />
+这是一个功能完善的PDF文件批量处理与信息分析自动化程序，具备两大核心功能：1) PDF标题提取与文件重命名；2) 论文机构信息报告生成。程序可以递归遍历指定目录下的所有PDF文件，智能提取标题信息并重命名文件，同时能够基于目录结构分析论文的机构分布情况并生成标准化报告。
+
+<img width="589" height="590" alt="image" src="https://github.com/user-attachments/assets/b0ee42e5-69fb-48d7-8a0b-cbbd1405f1f3" />
 
 ## 功能特性
 
-### 1. 文件遍历与内容提取
+### 1. PDF标题提取与重命名功能
+
+#### 文件遍历与内容提取
 - 支持递归遍历指定根目录下的所有子文件夹
 - 识别并处理所有PDF文件，提取每个文件内容中的标题信息
 - 实现多区域内容识别算法，对PDF文档的页眉、页脚、正文等不同区域进行智能分析
 - 应用关键词匹配验证机制，提高标题提取的准确性
 - 支持从元数据和文档内容两种方式提取标题信息
-<img width="589" height="590" alt="image" src="https://github.com/user-attachments/assets/b0ee42e5-69fb-48d7-8a0b-cbbd1405f1f3" />
+<img width="866" height="594" alt="image" src="https://github.com/user-attachments/assets/cc04bdac-dda9-495a-ae14-9ed9308a49a9" />
 
 ### 2. 文件重命名功能
 - 使用提取到的标题对文件进行重命名，严格保留原始文件的.pdf扩展名
@@ -44,6 +47,27 @@
   - 机构名称
   - 处理状态
   - 处理时间戳
+<img width="1191" height="696" alt="image" src="https://github.com/user-attachments/assets/aa46365e-ec0e-4978-8537-b9d55e188594" />
+
+### 2. 论文机构信息报告生成功能
+
+#### 机构信息提取
+- 从目录结构自动识别论文所属机构（基于文件夹名称）
+- 根据机构特征识别细分子机构（论文出版社）
+- 从PDF文件名中智能提取论文标题
+- 支持多层级目录结构的识别与分析
+
+#### 标准化报告生成
+- 生成包含三列信息的Excel标准报告：论文所属机构、细分子机构、论文标题
+- 自动格式化Excel表格，设置合适的列宽和标题样式
+- 生成详细的机构分布统计报告，包含总体统计、机构分布和出版社分布
+- 提供完整的数据处理日志，记录处理过程和结果
+
+#### 智能数据处理
+- 自动清理文件名中的干扰信息，提取准确的论文标题
+- 根据机构名称和文件特征智能匹配出版社信息
+- 支持特殊字符处理和文本规范化
+- 提供详细的统计分析，包括数量和百分比分布
 
 ### 6. 灵活的配置选项
 - 支持通过命令行参数进行灵活配置
@@ -70,7 +94,7 @@ pip install -r requirements.txt
 
 ## 使用方法
 
-### 基本用法
+### 1. PDF标题提取与重命名工具使用方法
 
 最简单的使用方式是直接运行程序并指定要处理的文件夹：
 
@@ -117,18 +141,47 @@ python pdf_title_renamer.py [文件夹路径] [选项]
    python pdf_title_renamer.py D:\pdfs --log-level DEBUG
    ```
 
-5. 禁用Excel报告生成：
+### 5. 禁用Excel报告生成：
    ```bash
    python pdf_title_renamer.py D:\pdfs --no-excel
    ```
 
+### 2. 论文机构信息报告生成工具使用方法
+
+#### 基本用法
+
+直接运行机构信息报告生成工具，它会自动扫描当前目录下的所有机构文件夹：
+
+```bash
+python generate_paper_institution_report.py
+```
+
+#### 使用说明
+- 工具会自动识别当前目录下的主要机构文件夹（如AAAI、Nature、中国知网等）
+- 自动扫描所有PDF文件，提取论文标题和机构信息
+- 生成标准化的Excel报告和文本格式的统计报告
+- 所有输出文件自动保存在logs目录中
+
 ## 输出说明
 
-### 日志文件
+### 1. PDF标题提取与重命名工具输出
+
+#### 日志文件
 处理日志将保存在程序所在目录下的`logs`文件夹中，文件名格式为`pdf_renamer_YYYYMMDD_HHMMSS.log`。
 
-### Excel报告
+#### Excel报告
 如果启用了Excel报告功能，报告文件将保存在`logs`文件夹中，文件名格式为`pdf_processing_report_YYYYMMDD_HHMMSS.xlsx`。
+
+### 2. 论文机构信息报告生成工具输出
+
+#### 日志文件
+处理日志将保存在`logs`文件夹中，文件名格式为`paper_institution_report_YYYYMMDD_HHMMSS.log`。
+
+#### Excel报告
+标准化的论文机构信息Excel报告保存在`logs`文件夹中，文件名格式为`论文机构信息汇总_YYYYMMDD_HHMMSS.xlsx`。
+
+#### 统计报告
+详细的机构分布统计报告保存在`logs`文件夹中，文件名格式为`机构分布报告_YYYYMMDD_HHMMSS.txt`。
 
 ## 注意事项
 
@@ -164,9 +217,17 @@ python pdf_title_renamer.py [文件夹路径] [选项]
 
 ## 更新日志
 
+### v2.0 (最新版本)
+- 新增论文机构信息报告生成功能
+- 实现基于目录结构的机构自动识别
+- 支持三列标准信息（机构、细分子机构、论文标题）提取与报告生成
+- 添加机构分布统计分析功能
+- 优化文件处理和日志记录机制
+
 ### v1.0 (初始版本)
 - 实现PDF标题提取和重命名功能
 - 支持递归处理文件夹
 - 实现Excel报告生成
 - 添加完整的错误处理机制
 - 支持命令行参数配置
+
