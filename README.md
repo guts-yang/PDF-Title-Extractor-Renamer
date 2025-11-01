@@ -1,6 +1,7 @@
 # PDF标题提取与重命名工具
 
 这是一个功能完善的PDF文件批量处理自动化程序，可以递归遍历指定目录下的所有PDF文件，智能提取标题信息并将文件重命名为其标题文本。
+<img width="866" height="594" alt="image" src="https://github.com/user-attachments/assets/cc04bdac-dda9-495a-ae14-9ed9308a49a9" />
 
 ## 功能特性
 
